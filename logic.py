@@ -43,8 +43,24 @@ connect(start, end, "D", "AN")
 connect(end, start, "D", "AUS")
 
 def run(word:str):
-    for t in transitions:
+    spos = []
+    for index, t in enumerate(transitions):
         if t["s1"] == start:
-            print("start found")
+            print("yay")
+            spos.append(t)
 
-run("")
+    if spos == []:
+        return "no transition from start found"
+    
+    current_state = start
+
+    for symbol in word:
+        for t in transitions:
+            if t["s1"] == current_state and t["input"] == symbol:
+                print(t["output"])
+                current_state = t["s2"]
+                break
+
+    return "success, done"
+
+print(run("DDD"))
