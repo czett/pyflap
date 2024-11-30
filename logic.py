@@ -2,6 +2,9 @@ import string, random
 
 transitions = []
 
+global start
+start = 0
+
 # tuple notation
 sigma = []
 gamma = []
@@ -28,6 +31,10 @@ class State:
         
         q.append(self)
 
+        if self.is_start:
+            global start
+            start = self
+
     def __str__(self) -> str:
         return f"q{self.num}"
 
@@ -39,15 +46,10 @@ class Automaton:
     def add_state(self, state:State):
         self.states.append(state)
 
-start = State(True, False, 0)
-broken = State(False, False, 1)
-end = State(False, True, 2)
-
-connect(start, end, "D", "ON") # turn switch on
-connect(end, start, "D", "OFF") # turn switch off
-connect(end, broken, "S", "BROKEN") # break switch, maybe destroying it for context, only possible when turned on
-
 def run(word:str):
+    if start == 0:
+        return "no start found"
+    
     spos = []
     for index, t in enumerate(transitions):
         if t["s1"] == start:
@@ -77,5 +79,3 @@ def run(word:str):
             return f"no transition with symbol: {symbol} at index {index} found :("
 
     return "success, done"
-
-print(run("DDDSD"))
