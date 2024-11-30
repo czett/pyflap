@@ -1,43 +1,11 @@
 from tkinter import *
-import logic as lg
-import vis
 
-state_dict = {}
-states = []
-transitions = []
-
-# Methods
 def create():
-    if states == []:
-        start_state = True
-    else:
-        start_state = False
-        
-    sname = name.get()
-    created_state = lg.State(start_state, False, sname)
-    states.append(created_state)
-    state_dict[f"{sname}"] = created_state
-
-    print(states)
-    print(transitions)
-
+    print("")
 def connect():
-    s1 = s1_name.get()
-    s2 = s2_name.get()
-    i = input_symbol.get()
-    o = output.get()
-
-    lg.connect(state_dict[s1], state_dict[s2], i, o)
-    t = (f"q{s1}", f"q{s2}", f"{i} / {o}")
-    transitions.append(t)
-
-    print(states)
-    print(transitions)
-
+    print("")
 def run():
-    word = word_name.get()
-    print(lg.run(word))
-    vis.graph(states, transitions)
+    print("")
 
 root = Tk()
 root.title("PyFlap")
@@ -58,7 +26,7 @@ create_label["font"] = "Arial 14"
 create_label.pack(pady=0)
 
 name = Entry(root)
-name.insert(0, "number")
+name.insert(0, "q0")
 name.pack()
 
 create_btn = Button(root, text="Create", command=create)
