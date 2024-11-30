@@ -8,6 +8,7 @@
 - Handle inputs and track state changes.
 - Supports customizable input (`σ`) and output (`γ`) alphabets.
 - Includes a sample automaton for demonstration.
+- Visualize automata using NetworkX and Matplotlib.
 
 ## Example
 
@@ -28,9 +29,20 @@ connect(end, broken, "S", "BROKEN") # break switch
 print(run("DDDSD"))
 ```
 
+### Visualizing the Automaton
+
+PyFlap can plot automata using `NetworkX` and `Matplotlib`. For the above example, the visualization would include:
+
+- **States** (`q0`, `q1`, `q2`) represented as nodes.
+- **Transitions** (`D / ON`, `D / OFF`, `S / BROKEN`) as labeled edges.
+- Curved arrows for readability in cases of overlapping transitions.
+
 ## Output
 
-The script will print outputs of transitions and notify if the automaton encounters invalid inputs or unreachable states.
+The script will:
+- Print outputs of transitions.
+- Notify if the automaton encounters invalid inputs or unreachable states.
+- Display a clear graphical representation of the automaton if visualization is enabled.
 
 ### License
 
