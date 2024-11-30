@@ -1,0 +1,8 @@
+digraph {
+	q0 [label="q0 (start)" color=green shape=circle]
+	q1 [label="q1 (broken)" color=red shape=circle]
+	q2 [label="q2 (end)" color=blue shape=doublecircle]
+	q0 -> q2 [label="D / ON"]
+	q2 -> q0 [label="D / OFF"]
+	q2 -> q1 [label="S / BROKEN"]
+}
