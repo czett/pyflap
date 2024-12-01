@@ -45,6 +45,9 @@ With PyFlap's GUI, users can:
 - **Define transitions** between states, including the input symbol and output label.
 - **Run the automaton** with a user-provided word to check its behavior.
 
+![where is my image?](https://github.com/czett/pyflap/blob/main/assets/img/gui.png)
+![where is my image?](https://github.com/czett/pyflap/blob/main/assets/img/plot.png)
+
 ### Error Handling (Currently Missing)
 
 At the moment, **PyFlap** lacks proper error handling for several aspects of automaton creation and simulation. Here's what needs to be addressed:
