@@ -8,36 +8,46 @@ transitions = []
 
 # Methods
 def create():
-    if states == []:
-        start_state = True
-    else:
-        start_state = False
-        
-    sname = name.get()
-    created_state = lg.State(start_state, False, sname)
-    states.append(created_state)
-    state_dict[f"{sname}"] = created_state
+    try:
+        if states == []:
+            start_state = True
+        else:
+            start_state = False
+            
+        sname = name.get()
+        created_state = lg.State(start_state, False, sname)
+        states.append(created_state)
+        state_dict[f"{sname}"] = created_state
 
-    print(states)
-    print(transitions)
+        print(states)
+        print(transitions)
+    except:
+        error_msg.config(text="Damn there was some error while crearing your state, arghhh!")
 
 def connect():
-    s1 = s1_name.get()
-    s2 = s2_name.get()
-    i = input_symbol.get()
-    o = output.get()
+    try:
+        s1 = s1_name.get()
+        s2 = s2_name.get()
+        i = input_symbol.get()
+        o = output.get()
 
-    lg.connect(state_dict[s1], state_dict[s2], i, o)
-    t = (f"q{s1}", f"q{s2}", f"{i} / {o}")
-    transitions.append(t)
+        lg.connect(state_dict[s1], state_dict[s2], i, o)
+        t = (f"q{s1}", f"q{s2}", f"{i} / {o}")
+        transitions.append(t)
 
-    print(states)
-    print(transitions)
+        print(states)
+        print(transitions)
+    except:
+        error_msg.config(text="Damn there was some error while connecting the states :(")
 
 def run():
-    word = word_name.get()
-    print(lg.run(word))
-    vis.graph(states, transitions)
+    try:
+        word = word_name.get()
+        print(lg.run(word))
+        vis.graph(states, transitions)
+    except:
+        error_msg.config(text="Damn there was some error while running the automaton!")
+
 
 root = Tk()
 root.title("PyFlap")
@@ -47,6 +57,10 @@ root.geometry("800x600")
 title = Label(text="PyFlap")
 title["font"] = "Arial 20 bold"
 title.pack(pady=10)
+
+error_msg = Label(text="", fg="#ff0000")
+error_msg["font"] = "Arial 14 bold"
+error_msg.pack(pady=0)
 
 subtitle = Label(text="Create automata here!\n------------------------------")
 subtitle["font"] = "Arial 14 bold"
